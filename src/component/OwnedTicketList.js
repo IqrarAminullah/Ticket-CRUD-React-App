@@ -85,7 +85,7 @@ export default class OwnedTicketList extends Component {
   }
 
   sendNewTicket(ticket){
-    axios.put("http://iqraraminullah.api/api/Ticket/"+ticket.ticketId,ticket)
+    axios.put(process.env.REACT_APP_API_URL+"/api/Ticket/"+ticket.ticketId,ticket)
       .then((response) =>{
           this.setState({
               currentTicket : null
@@ -151,7 +151,7 @@ export default class OwnedTicketList extends Component {
   retrieveTickets() {
     const { searchTicketName, page, pageSize,searchStatusId } = this.state;
 
-    axios.get("http://iqraraminullah.api/api/Ticket/"+
+    axios.get(process.env.REACT_APP_API_URL+"/api/Ticket/"+
     JSON.parse(localStorage.getItem('token')).id+
     "/owned/?"+
     "pageNumber="+page+
@@ -172,7 +172,7 @@ export default class OwnedTicketList extends Component {
 
   getUsers =()=>{
       var userList = [{userId:0,username:"None"}]
-      axios.get('http://iqraraminullah.api/api/User')
+      axios.get(process.env.REACT_APP_API_URL+'/api/User')
       .then(response =>{
           userList.push.apply(userList,response.data)
           this.setState({
@@ -185,7 +185,7 @@ export default class OwnedTicketList extends Component {
 
   getCategories =()=>{
       var categories = [{categoryId:0,categoryName:"None"}]
-      axios.get('http://iqraraminullah.api/api/Category')
+      axios.get(process.env.REACT_APP_API_URL+'/api/Category')
       .then(response =>{
           categories.push.apply(categories,response.data)
           this.setState({

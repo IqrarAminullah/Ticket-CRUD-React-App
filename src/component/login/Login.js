@@ -18,7 +18,7 @@ export default function Login({ setToken }) {
         'email':email,
         'password':password
     }
-    axios.post("http://iqraraminullah.api/api/User/auth",userData)
+    axios.post(process.env.REACT_APP_API_URL+"/api/User/auth",userData)
     .then(json =>{
         console.log(json.data);
         setToken(json.data);
@@ -34,9 +34,9 @@ export default function Login({ setToken }) {
       }
       var validity = checkValidity(userData);
       if(validity.valid){
-        axios.post("http://iqraraminullah.api/api/User",userData)
+        axios.post(process.env.REACT_APP_API_URL+"/api/User",userData)
         .then(response =>{
-            axios.post("http://iqraraminullah.api/api/User/auth",userData)
+            axios.post(process.env.REACT_APP_API_URL+"/api/User/auth",userData)
             .then(json =>{
                 console.log(json.data);
                 setToken(json.data);

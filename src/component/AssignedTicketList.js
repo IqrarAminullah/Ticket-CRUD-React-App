@@ -78,7 +78,7 @@ export default class AssignedTicketList extends Component {
   }
 
   sendNewTicket(ticket){
-    axios.put("http://iqraraminullah.api/api/Ticket/"+ticket.ticketId,ticket)
+    axios.put(process.env.REACT_APP_API_URL+"/api/Ticket/"+ticket.ticketId,ticket)
       .then((response) =>{
           this.setState({
               currentTicket : null
@@ -104,7 +104,7 @@ export default class AssignedTicketList extends Component {
   retrieveTickets() {
     const { searchTicketName, page, pageSize,searchStatusId } = this.state;
 
-    axios.get("http://iqraraminullah.api/api/Ticket/"+
+    axios.get(process.env.REACT_APP_API_URL+"/api/Ticket/"+
     JSON.parse(localStorage.getItem('token')).id+
     "/assigned/?"+
     "pageNumber="+page+

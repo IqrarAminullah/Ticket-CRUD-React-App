@@ -72,7 +72,7 @@ export default class TicketList extends Component {
   retrieveTickets() {
     const { searchTicketName, page, pageSize,searchStatusId } = this.state;
 
-    axios.get("http://iqraraminullah.api/api/Ticket/?"+
+    axios.get(process.env.REACT_APP_API_URL+"/api/Ticket/?"+
     "pageNumber="+page+
     "&pageSize="+pageSize+
     "&ticketName="+searchTicketName+
@@ -91,7 +91,7 @@ export default class TicketList extends Component {
 
   getCategories =()=>{
     var categories = [{categoryId:0,categoryName:"None"}]
-    axios.get('http://iqraraminullah.api/api/Category')
+    axios.get(process.env.REACT_APP_API_URL+'/api/Category')
     .then(response =>{
         categories.push.apply(categories,response.data)
         this.setState({

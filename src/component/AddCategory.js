@@ -15,7 +15,7 @@ class AddCategory extends React.Component{
         var newCategory = {
             categoryName:this.state.categoryName
         }
-        axios.post('http://iqraraminullah.api/api/Category',newCategory)
+        axios.post(process.env.REACT_APP_API_URL+'/api/Category',newCategory)
         .then(response =>{
             console.log(response.data);
         })

@@ -3,6 +3,9 @@ import axios from 'axios';
 import '../component/AddTicket.css'  
 import { Container, Col, Form, Row, FormGroup, Label, Input, Button } from 'reactstrap';  
 
+require('dotenv').config()
+
+
 class AddTicket extends React.Component{
     constructor(props){
         super(props);
@@ -51,6 +54,7 @@ class AddTicket extends React.Component{
     componentDidMount() {
         this.GetUsers();
         this.GetCategories();
+        console.log(process.env);
       }
 
     onUserChange(e){
@@ -80,7 +84,7 @@ class AddTicket extends React.Component{
                 ownerId : JSON.parse(localStorage.getItem('token')).id,
                 categoryId : this.state.categoryId,
             }
-            axios.post('http://iqraraminullah.api/api/Ticket',newTicket)
+            axios.post(process.env.REACT_APP_API_URL+'/api/Ticket',newTicket)
             .then(json =>{
                 alert("Data added successfully");
             }).catch(err =>{
@@ -91,7 +95,7 @@ class AddTicket extends React.Component{
 
     GetUsers =()=>{
         var userList = [{userId:0,username:"None"}]
-        axios.get('http://iqraraminullah.api/api/User')
+        axios.get(process.env.REACT_APP_API_URL+'/api/User')
         .then(response =>{
             userList.push.apply(userList,response.data)
             this.setState({
@@ -104,7 +108,7 @@ class AddTicket extends React.Component{
 
     GetCategories =()=>{
         var categories = [{categoryId:0,categoryName:"None"}]
-        axios.get('http://iqraraminullah.api/api/Category')
+        axios.get(process.env.REACT_APP_API_URL+'/api/Category')
         .then(response =>{
             categories.push.apply(categories,response.data)
             this.setState({
