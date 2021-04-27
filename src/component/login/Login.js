@@ -20,8 +20,9 @@ export default function Login({ setToken }) {
     }
     axios.post(process.env.REACT_APP_API_URL+"/api/User/auth",userData)
     .then(json =>{
-        console.log(json.data);
         setToken(json.data);
+    }).catch(err =>{
+      alert("Login error");
     })
   }
 
@@ -38,8 +39,9 @@ export default function Login({ setToken }) {
         .then(response =>{
             axios.post(process.env.REACT_APP_API_URL+"/api/User/auth",userData)
             .then(json =>{
-                console.log(json.data);
                 setToken(json.data);
+            }).catch(err   =>{
+              alert("Register error");
             })
         });
       }else{
